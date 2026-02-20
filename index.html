@@ -1,0 +1,1543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HCP - QuickBooks Online Card (Official Design System)</title>
+    <style>
+        /* ========================================
+           HCP DESIGN SYSTEM - Official Tokens
+           Retrieved from Figma: yDipxk8KeTUDaBsta4cez7
+           ======================================== */
+
+        :root {
+            /* Semantic Colors */
+            --color-action-primary: #0e6fbe;
+            --color-action-primary-dark: #0d47a1;
+            --background-page: #fafafa;
+            --surface-card: #ffffff;
+            --text-primary: #212121;
+            --text-muted: #616161;
+            --border-subtle: #e0e0e0;
+            --status-success: #00a344;
+            --status-warning: #bf8600;
+            --status-error: #d81b60;
+
+            /* Typography */
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+            /* Primitive Geometry */
+            --border-radius: 8px;
+            --border-width: 1px;
+            --shadow: 0 0 12px 2px rgba(0,0,0,0.1);
+
+            /* QuickBooks Green (from screenshots) */
+            --qb-green: #2ca01c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background: var(--background-page);
+            padding: 0;
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: var(--surface-card);
+            border-bottom: var(--border-width) solid var(--border-subtle);
+            padding: 16px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .page-title {
+            font-size: 20px;
+            font-weight: 400;
+            color: var(--text-primary);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .add-favorites {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 14px;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .star-icon {
+            font-size: 18px;
+        }
+
+        .btn-text {
+            background: none;
+            border: none;
+            color: var(--color-action-primary);
+            font-size: 14px;
+            font-weight: 600;
+            padding: 8px 16px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: var(--color-action-primary);
+            border: none;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 10px 28px;
+            border-radius: 200px; /* Pill shape from design system */
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary:hover {
+            background: var(--color-action-primary-dark);
+        }
+
+        .btn-primary:disabled {
+            background: var(--border-subtle);
+            cursor: not-allowed;
+        }
+
+        /* Main Container */
+        .main-container {
+            display: flex;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 32px;
+            gap: 32px;
+        }
+
+        /* Left Column */
+        .left-column {
+            flex: 1;
+            max-width: 680px;
+        }
+
+        /* Right Column */
+        .right-column {
+            width: 380px;
+            flex-shrink: 0;
+        }
+
+        /* Card */
+        .card {
+            background: var(--surface-card);
+            border: var(--border-width) solid var(--border-subtle);
+            border-radius: var(--border-radius);
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .breadcrumb a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .form-input,
+        .form-textarea,
+        .form-select {
+            width: 100%;
+            padding: 10px 12px;
+            border: var(--border-width) solid var(--border-subtle);
+            border-radius: var(--border-radius);
+            font-family: var(--font-family);
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--text-primary);
+            background: var(--surface-card);
+        }
+
+        .form-input:focus,
+        .form-textarea:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: var(--color-action-primary);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23616161' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            padding-right: 36px;
+            cursor: pointer;
+        }
+
+        /* Pricing Card Specific */
+        .pricing-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .expand-icon {
+            width: 20px;
+            height: 20px;
+            border: var(--border-width) solid var(--border-subtle);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+
+        .pricing-field {
+            margin-bottom: 16px;
+        }
+
+        .field-label {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        .field-value {
+            font-size: 14px;
+            color: var(--text-primary);
+        }
+
+        .pricing-row {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .pricing-col {
+            flex: 1;
+        }
+
+        .help-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 16px;
+            height: 16px;
+            border: 1.5px solid var(--text-muted);
+            border-radius: 50%;
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-left: 4px;
+            cursor: help;
+            font-weight: 600;
+        }
+
+        /* Toggle Switch */
+        .toggle-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 44px;
+            height: 24px;
+            background: var(--color-action-primary);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .toggle-switch.off {
+            background: var(--border-subtle);
+        }
+
+        .toggle-knob {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s;
+        }
+
+        .toggle-switch:not(.off) .toggle-knob {
+            transform: translateX(20px);
+        }
+
+        .toggle-label {
+            font-size: 14px;
+            color: var(--text-primary);
+        }
+
+        /* QuickBooks Card */
+        .qbo-section {
+            border-top: var(--border-width) solid var(--border-subtle);
+            padding-top: 20px;
+        }
+
+        .qbo-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .qbo-title-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .qbo-logo {
+            width: 24px;
+            height: 24px;
+            background: var(--qb-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        .qbo-title {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        /* Linked Item Display */
+        .linked-item-row {
+            font-size: 14px;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            line-height: 20px;
+        }
+
+        .linked-item-link {
+            color: var(--color-action-primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .linked-item-link:hover {
+            text-decoration: underline;
+        }
+
+        .external-icon {
+            font-size: 12px;
+        }
+
+        .edit-link-btn {
+            color: var(--color-action-primary);
+            font-size: 14px;
+            font-weight: 600;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            margin-bottom: 16px;
+            display: inline-block;
+        }
+
+        .edit-link-btn:hover {
+            text-decoration: underline;
+        }
+
+        /* Error Banner (from Image 13) */
+        .error-banner {
+            background: #fce4ec;
+            border-radius: var(--border-radius);
+            padding: 12px 16px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .error-banner-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+        }
+
+        .error-icon {
+            width: 20px;
+            height: 20px;
+            background: var(--status-error);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .error-message {
+            font-size: 14px;
+            color: var(--text-primary);
+            font-weight: 400;
+        }
+
+        .error-close {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 20px;
+            line-height: 1;
+            cursor: pointer;
+            padding: 0;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .error-close:hover {
+            opacity: 0.7;
+        }
+
+        .deleted-label {
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        /* Search UI (from screenshot) */
+        .search-section {
+            margin-bottom: 16px;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 16px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 10px 12px 10px 40px;
+            border: 2px solid var(--border-subtle);
+            border-radius: var(--border-radius);
+            font-family: var(--font-family);
+            font-size: 14px;
+            color: var(--text-primary);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--color-action-primary);
+        }
+
+        .search-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .search-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .btn-link {
+            background: var(--border-subtle);
+            border: none;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 10px 28px;
+            border-radius: 200px;
+            cursor: not-allowed;
+        }
+
+        .btn-link.active {
+            background: var(--color-action-primary);
+            cursor: pointer;
+        }
+
+        .btn-link.active:hover {
+            background: var(--color-action-primary-dark);
+        }
+
+        .btn-cancel {
+            background: none;
+            border: none;
+            color: var(--color-action-primary);
+            font-size: 14px;
+            font-weight: 600;
+            padding: 10px 28px;
+            cursor: pointer;
+        }
+
+        /* Live Search Dropdown (from Image 14) */
+        .search-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--surface-card);
+            border: 2px solid var(--color-action-primary);
+            border-top: none;
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 100;
+            display: none;
+        }
+
+        .search-dropdown.active {
+            display: block;
+        }
+
+        .dropdown-item {
+            padding: 12px 16px;
+            cursor: pointer;
+            background: var(--background-page);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .dropdown-item:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-item:hover {
+            background: var(--border-subtle);
+        }
+
+        .dropdown-item-name {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .dropdown-item-details {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* Create and Link (from Image 15) */
+        .create-option {
+            padding: 16px;
+            background: #e3f2fd;
+            text-align: center;
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+        }
+
+        .create-link-text {
+            color: var(--color-action-primary);
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .create-link-text:hover {
+            text-decoration: underline;
+        }
+
+        /* Confirm Modal (from Image 16) */
+        .confirm-modal {
+            padding: 32px;
+        }
+
+        .confirm-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+        }
+
+        .confirm-description {
+            font-size: 14px;
+            color: var(--text-primary);
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+
+        .confirm-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+
+        .comparison-column h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 20px;
+        }
+
+        .comparison-row {
+            margin-bottom: 16px;
+        }
+
+        .comparison-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .comparison-value {
+            font-size: 14px;
+            color: var(--text-primary);
+        }
+
+        .confirm-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+
+        /* Modal Overlay */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--surface-card);
+            border-radius: var(--border-radius);
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow);
+        }
+
+        .modal-header {
+            padding: 24px 32px;
+            border-bottom: var(--border-width) solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .modal-qb-logo {
+            width: 48px;
+            height: 48px;
+            background: var(--qb-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 24px;
+        }
+
+        .modal-title {
+            font-size: 20px;
+            font-weight: 400;
+            color: var(--text-primary);
+        }
+
+        .modal-body {
+            padding: 32px;
+            overflow-y: auto;
+        }
+
+        .modal-subtitle {
+            font-size: 16px;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+        }
+
+        .item-list {
+            margin-bottom: 24px;
+        }
+
+        .item-option {
+            padding: 16px;
+            background: var(--background-page);
+            border-radius: var(--border-radius);
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .item-option:hover {
+            background: var(--border-subtle);
+        }
+
+        .item-option.selected {
+            background: var(--border-subtle);
+        }
+
+        .item-option-name {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .item-option-type {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+            font-size: 15px;
+        }
+
+        .create-link {
+            text-align: center;
+            padding: 20px;
+            border-top: var(--border-width) solid var(--border-subtle);
+        }
+
+        .create-link a {
+            color: var(--color-action-primary);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .create-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* States Toggle */
+        .state-toggle {
+            background: var(--surface-card);
+            border: var(--border-width) solid var(--border-subtle);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .state-toggle h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .state-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .state-btn {
+            padding: 8px 16px;
+            background: var(--background-page);
+            border: var(--border-width) solid var(--border-subtle);
+            border-radius: 200px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+            cursor: pointer;
+        }
+
+        .state-btn.active {
+            background: var(--color-action-primary);
+            color: white;
+            border-color: var(--color-action-primary);
+        }
+
+        .state-container {
+            display: none;
+        }
+
+        .state-container.active {
+            display: block;
+        }
+
+        @media (max-width: 1200px) {
+            .main-container {
+                flex-direction: column;
+            }
+
+            .right-column {
+                width: 100%;
+                max-width: 680px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1 class="page-title">New service</h1>
+        <div class="header-actions">
+            <button class="add-favorites">
+                <span class="star-icon">☆</span>
+                <span>Add to favorites</span>
+            </button>
+            <button class="btn-text">CANCEL</button>
+            <button class="btn-primary">SAVE</button>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Left Column -->
+        <div class="left-column">
+            <div class="card">
+                <div class="breadcrumb">
+                    <a href="#">Price book</a> ›
+                    <a href="#">Services</a> ›
+                    <a href="#">Moving</a> ›
+                    <a href="#">Category name</a> ›
+                    <span>Sub-category</span>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Service name</label>
+                    <input type="text" class="form-input" placeholder="Service name">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Description</label>
+                    <textarea class="form-textarea" placeholder="Description"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Task code</label>
+                    <input type="text" class="form-input" placeholder="Task code">
+                </div>
+            </div>
+
+            <!-- State Selector -->
+            <div class="state-toggle">
+                <h3>View Different States:</h3>
+                <div class="state-buttons">
+                    <button class="state-btn active" onclick="showState('default')">Default (No Link)</button>
+                    <button class="state-btn" onclick="showState('linked')">Linked Item</button>
+                    <button class="state-btn" onclick="showState('search')">Link Search</button>
+                    <button class="state-btn" onclick="showState('broken')">Broken Link</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column - Pricing Card -->
+        <div class="right-column">
+            <div class="card">
+                <div class="pricing-card-header">
+                    <span class="card-title">Pricing</span>
+                    <span class="expand-icon">⛶</span>
+                </div>
+
+                <div class="pricing-field">
+                    <span class="field-label">Unit</span>
+                    <div class="field-value">Each</div>
+                </div>
+
+                <div class="pricing-field">
+                    <span class="field-label">Service cost</span>
+                    <div class="field-value">$0.00</div>
+                </div>
+
+                <div class="pricing-field">
+                    <span class="field-label">Service price</span>
+                    <div class="field-value">$0.00</div>
+                </div>
+
+                <div class="pricing-row">
+                    <div class="pricing-col">
+                        <span class="field-label">Markup <span class="help-icon">?</span></span>
+                        <div class="field-value">-</div>
+                    </div>
+                    <div class="pricing-col">
+                        <span class="field-label">Gross margin <span class="help-icon">?</span></span>
+                        <div class="field-value">-</div>
+                    </div>
+                </div>
+
+                <div class="toggle-row">
+                    <div class="toggle-switch off" onclick="toggleSwitch(this)">
+                        <div class="toggle-knob"></div>
+                    </div>
+                    <span class="toggle-label">Taxable</span>
+                </div>
+
+                <!-- QuickBooks Section - DEFAULT STATE -->
+                <div id="qbo-default" class="qbo-section state-container active">
+                    <div class="qbo-header">
+                        <div class="qbo-title-section">
+                            <div class="qbo-logo">qb</div>
+                            <span class="qbo-title">QuickBooks Online</span>
+                        </div>
+                        <span class="help-icon">?</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Account type</label>
+                        <select class="form-select" onchange="updateSubTypes(this.value, 'default')">
+                            <option value="">Select account type</option>
+                            <option value="asset">Asset</option>
+                            <option value="expense">Expense</option>
+                            <option value="liability">Liability</option>
+                            <option value="revenue">Revenue</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Account sub-type</label>
+                        <select class="form-select" id="subtype-default">
+                            <option value="">Select sub-type</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- QuickBooks Section - LINKED STATE -->
+                <div id="qbo-linked" class="qbo-section state-container">
+                    <div class="qbo-header">
+                        <div class="qbo-title-section">
+                            <div class="qbo-logo">qb</div>
+                            <span class="qbo-title">QuickBooks Online</span>
+                        </div>
+                        <span class="help-icon">?</span>
+                    </div>
+
+                    <!-- View Mode -->
+                    <div id="linked-view-mode">
+                        <div class="linked-item-row">
+                            This item is linked with
+                            <a href="#" class="linked-item-link" onclick="alert('Opens QuickBooks item in new tab'); return false;">
+                                Snake the drain X1
+                                <span class="external-icon">↗</span>
+                            </a>
+                        </div>
+
+                        <button class="edit-link-btn" onclick="showLinkedSearch()">Edit item link</button>
+                    </div>
+
+                    <!-- Search Mode (shown when Edit is clicked) -->
+                    <div id="linked-search-mode" style="display: none;">
+                        <div class="linked-item-row" style="margin-bottom: 12px;">
+                            This item is linked with
+                            <a href="#" class="linked-item-link" onclick="alert('Opens QuickBooks item in new tab'); return false;">
+                                Snake the drain X1
+                                <span class="external-icon">↗</span>
+                            </a>
+                        </div>
+
+                        <div class="search-section">
+                            <div class="search-box">
+                                <span class="search-icon">🔍</span>
+                                <input
+                                    type="text"
+                                    class="search-input"
+                                    placeholder="Search"
+                                    id="linkedSearchInput"
+                                    oninput="handleLinkedSearch(this.value)"
+                                    onfocus="this.parentElement.querySelector('.search-dropdown').classList.add('active')"
+                                >
+                                <!-- Live Search Dropdown -->
+                                <div class="search-dropdown" id="linkedDropdown">
+                                    <div class="dropdown-item" onclick="selectDropdownItem('Garage Door Installation', 'Service • Service Revenue')">
+                                        <div class="dropdown-item-name">Garage Door Installation</div>
+                                        <div class="dropdown-item-details">Service • Service Revenue</div>
+                                    </div>
+                                    <div class="dropdown-item" onclick="selectDropdownItem('Garage Door Repair', 'Service • Repair & Maintenance')">
+                                        <div class="dropdown-item-name">Garage Door Repair</div>
+                                        <div class="dropdown-item-details">Service • Repair & Maintenance</div>
+                                    </div>
+                                    <div class="dropdown-item" onclick="selectDropdownItem('Snake the drain X1', 'Service • Sales of Product Income')">
+                                        <div class="dropdown-item-name">Snake the drain X1</div>
+                                        <div class="dropdown-item-details">Service • Sales of Product Income</div>
+                                    </div>
+                                    <div class="dropdown-item" onclick="selectDropdownItem('HVAC Maintenance', 'Service • Other Income')">
+                                        <div class="dropdown-item-name">HVAC Maintenance</div>
+                                        <div class="dropdown-item-details">Service • Other Income</div>
+                                    </div>
+                                    <!-- Create Option -->
+                                    <div class="create-option" id="createOption">
+                                        <a href="#" class="create-link-text" onclick="showConfirmModal(); return false;">
+                                            Create and link "<span id="createItemName">new item</span>"
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="search-actions">
+                                <button class="btn-link" id="linkedLinkBtn">Link Item</button>
+                                <button class="btn-cancel" onclick="hideLinkedSearch()">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Account type</label>
+                        <select class="form-select" onchange="updateSubTypes(this.value, 'linked')">
+                            <option value="">Select account type</option>
+                            <option value="asset">Asset</option>
+                            <option value="expense">Expense</option>
+                            <option value="liability">Liability</option>
+                            <option value="revenue" selected>Revenue</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Account sub-type</label>
+                        <select class="form-select" id="subtype-linked">
+                            <option value="sales-product-income">Sales of Product Income</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- QuickBooks Section - SEARCH STATE -->
+                <div id="qbo-search" class="qbo-section state-container">
+                    <div class="qbo-header">
+                        <div class="qbo-title-section">
+                            <div class="qbo-logo">qb</div>
+                            <span class="qbo-title">QuickBooks Online</span>
+                        </div>
+                        <span class="help-icon">?</span>
+                    </div>
+
+                    <div class="linked-item-row" style="margin-bottom: 12px;">
+                        This item is linked with
+                        <a href="#" class="linked-item-link">
+                            Snake the drain X1
+                            <span class="external-icon">↗</span>
+                        </a>
+                    </div>
+
+                    <div class="search-section">
+                        <div class="search-box">
+                            <span class="search-icon">🔍</span>
+                            <input type="text" class="search-input" placeholder="Search" id="inlineSearch">
+                        </div>
+                        <div class="search-actions">
+                            <button class="btn-link" id="linkBtn">Link Item</button>
+                            <button class="btn-cancel" onclick="showState('linked')">Cancel</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Account type</label>
+                        <select class="form-select" onchange="updateSubTypes(this.value, 'search')">
+                            <option value="">Select account type</option>
+                            <option value="asset">Asset</option>
+                            <option value="expense">Expense</option>
+                            <option value="liability">Liability</option>
+                            <option value="revenue" selected>Revenue</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Account sub-type</label>
+                        <select class="form-select" id="subtype-search">
+                            <option value="sales-product-income">Sales of Product Income</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- QuickBooks Section - BROKEN LINK STATE -->
+                <div id="qbo-broken" class="qbo-section state-container">
+                    <div class="qbo-header">
+                        <div class="qbo-title-section">
+                            <div class="qbo-logo">qb</div>
+                            <span class="qbo-title">QuickBooks Online</span>
+                        </div>
+                        <span class="help-icon">?</span>
+                    </div>
+
+                    <!-- Error Banner (from Image 13) -->
+                    <div class="error-banner" id="errorBanner">
+                        <div class="error-banner-content">
+                            <div class="error-icon">!</div>
+                            <div class="error-message">This item is deleted in QuickBooks</div>
+                        </div>
+                        <button class="error-close" onclick="closeErrorBanner()" aria-label="Close">×</button>
+                    </div>
+
+                    <div class="linked-item-row" style="margin-bottom: 12px;">
+                        This item is linked with
+                        <span class="deleted-label">HVAC Service (deleted)</span>
+                    </div>
+
+                    <div class="search-section">
+                        <div class="search-box">
+                            <span class="search-icon">🔍</span>
+                            <input type="text" class="search-input" placeholder="Search" id="brokenSearch">
+                        </div>
+                        <div class="search-actions">
+                            <button class="btn-link" id="brokenLinkBtn">Link Item</button>
+                            <button class="btn-cancel" onclick="showState('linked')">Cancel</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Account type</label>
+                        <select class="form-select" onchange="updateSubTypes(this.value, 'broken')">
+                            <option value="">Select account type</option>
+                            <option value="asset">Asset</option>
+                            <option value="expense">Expense</option>
+                            <option value="liability">Liability</option>
+                            <option value="revenue" selected>Revenue</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Account sub-type</label>
+                        <select class="form-select" id="subtype-broken">
+                            <option value="service-revenue">Service Revenue</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirm Link Modal (from Image 16) -->
+    <div class="modal-overlay" id="confirmModal" onclick="closeConfirmModalOnOverlay(event)">
+        <div class="modal-content">
+            <div class="confirm-modal">
+                <h2 class="confirm-title">Confirm link</h2>
+
+                <p class="confirm-description">
+                    By linking <strong id="confirmItemName">New Item</strong>, you will be creating this item in QuickBooks.
+                    This item will be associated with your selected account type and sub-type.
+                </p>
+
+                <div class="confirm-comparison">
+                    <div class="comparison-column">
+                        <h3>Housecall Pro Item</h3>
+                        <div class="comparison-row">
+                            <div class="comparison-label">Item Name:</div>
+                            <div class="comparison-value" id="hcpItemName">New Service</div>
+                        </div>
+                        <div class="comparison-row">
+                            <div class="comparison-label">Type:</div>
+                            <div class="comparison-value">Service</div>
+                        </div>
+                        <div class="comparison-row">
+                            <div class="comparison-label">Account Type:</div>
+                            <div class="comparison-value" id="hcpAccountType">Revenue</div>
+                        </div>
+                        <div class="comparison-row">
+                            <div class="comparison-label">Account Sub-Type:</div>
+                            <div class="comparison-value" id="hcpAccountSubType">Service Revenue</div>
+                        </div>
+                    </div>
+
+                    <div class="comparison-column">
+                        <h3>QuickBooks Item</h3>
+                        <div class="comparison-row">
+                            <div class="comparison-label">Item Name:</div>
+                            <div class="comparison-value" id="qbItemName">New Service</div>
+                        </div>
+                        <div class="comparison-row">
+                            <div class="comparison-label">Type:</div>
+                            <div class="comparison-value">Service</div>
+                        </div>
+                        <div class="comparison-row">
+                            <div class="comparison-label">Account Type:</div>
+                            <div class="comparison-value" id="qbAccountType">Revenue</div>
+                        </div>
+                        <div class="comparison-row">
+                            <div class="comparison-label">Account Sub-Type:</div>
+                            <div class="comparison-value" id="qbAccountSubType">Service Revenue</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="confirm-actions">
+                    <button class="btn-text" onclick="closeConfirmModal()">Cancel</button>
+                    <button class="btn-primary" onclick="confirmCreateLink()">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedItem = null;
+
+        // Account sub-types from CAF-2769
+        const subTypeOptions = {
+            asset: [
+                'Cash On Hand',
+                'Checking',
+                'Savings'
+            ],
+            expense: [
+                'Bank Charges',
+                'Commissions and Fees',
+                'Entertainment',
+                'Entertainment Meals',
+                'Insurance',
+                'Interest Paid',
+                'Legal Professional Fees',
+                'Office Expenses',
+                'Other Business Expenses',
+                'Other Miscellaneous Service Cost',
+                'Repair & Maintenance',
+                'Supplies & Materials',
+                'Travel',
+                'Travel Meals',
+                'Utilities',
+                'Auto',
+                'Payroll Expenses',
+                'Unapplied Cash Bill Payment Expense',
+                'Other Miscellaneous Expense',
+                'Gas and Fuel',
+                'Repairs and Maintenance',
+                'Parking and Tolls',
+                'Vehicle',
+                'Home Office'
+            ],
+            liability: [
+                'Credit Card',
+                'Loan Payable',
+                'Payroll Clearing'
+            ],
+            revenue: [
+                'Service Revenue',
+                'Sales of Product Income',
+                'Other Primary Income',
+                'Discounts/Refunds Given'
+            ]
+        };
+
+        function updateSubTypes(accountType, stateId) {
+            const select = document.getElementById(`subtype-${stateId}`);
+            select.innerHTML = '<option value="">Select sub-type</option>';
+
+            if (accountType && subTypeOptions[accountType]) {
+                subTypeOptions[accountType].forEach(subType => {
+                    const option = document.createElement('option');
+                    option.value = subType.toLowerCase().replace(/[\s\/]/g, '-');
+                    option.textContent = subType;
+                    select.appendChild(option);
+                });
+            }
+        }
+
+        function toggleSwitch(element) {
+            element.classList.toggle('off');
+        }
+
+        function showState(state) {
+            // Update buttons
+            document.querySelectorAll('.state-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Update containers
+            document.querySelectorAll('.state-container').forEach(container => {
+                container.classList.remove('active');
+            });
+            document.getElementById(`qbo-${state}`).classList.add('active');
+        }
+
+        function openModal() {
+            document.getElementById('linkModal').classList.add('active');
+            document.getElementById('modalSearch').value = '';
+            document.getElementById('modalSearch').focus();
+            filterItems();
+        }
+
+        function closeModal() {
+            document.getElementById('linkModal').classList.remove('active');
+            selectedItem = null;
+            updateModalLinkButton();
+        }
+
+        function closeModalOnOverlay(event) {
+            if (event.target.id === 'linkModal') {
+                closeModal();
+            }
+        }
+
+        function filterItems() {
+            const searchTerm = document.getElementById('modalSearch').value.toLowerCase();
+            const items = document.querySelectorAll('.item-option');
+            const noResults = document.getElementById('noResults');
+            const createText = document.getElementById('createText');
+
+            let hasResults = false;
+
+            items.forEach(item => {
+                const name = item.dataset.name.toLowerCase();
+                if (name.includes(searchTerm)) {
+                    item.style.display = 'block';
+                    hasResults = true;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            document.getElementById('itemList').style.display = hasResults ? 'block' : 'none';
+            noResults.style.display = hasResults ? 'none' : 'block';
+            createText.textContent = searchTerm || 'new item';
+        }
+
+        function selectItem(element) {
+            // Remove previous selection
+            document.querySelectorAll('.item-option').forEach(item => {
+                item.classList.remove('selected');
+            });
+
+            // Highlight selected
+            element.classList.add('selected');
+            selectedItem = element.dataset.name;
+            updateModalLinkButton();
+        }
+
+        function updateModalLinkButton() {
+            const linkButton = document.getElementById('modalLinkBtn');
+            if (selectedItem) {
+                linkButton.classList.add('active');
+            } else {
+                linkButton.classList.remove('active');
+            }
+        }
+
+        function confirmLink() {
+            if (selectedItem) {
+                alert(`Item linked successfully!\n\nLinked to: ${selectedItem}`);
+                closeModal();
+                showState('linked');
+            }
+        }
+
+        // Close error banner
+        function closeErrorBanner() {
+            const banner = document.getElementById('errorBanner');
+            if (banner) {
+                banner.style.display = 'none';
+            }
+        }
+
+        // Inline search activation
+        document.getElementById('inlineSearch')?.addEventListener('input', function() {
+            const btn = document.getElementById('linkBtn');
+            if (this.value.trim()) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+
+        // Broken search activation
+        document.getElementById('brokenSearch')?.addEventListener('input', function() {
+            const btn = document.getElementById('brokenLinkBtn');
+            if (this.value.trim()) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+
+        // Linked item search functions
+        function showLinkedSearch() {
+            document.getElementById('linked-view-mode').style.display = 'none';
+            document.getElementById('linked-search-mode').style.display = 'block';
+            document.getElementById('linkedSearchInput').focus();
+        }
+
+        function hideLinkedSearch() {
+            document.getElementById('linked-view-mode').style.display = 'block';
+            document.getElementById('linked-search-mode').style.display = 'none';
+            document.getElementById('linkedSearchInput').value = '';
+            document.getElementById('linkedDropdown').classList.remove('active');
+        }
+
+        function handleLinkedSearch(value) {
+            const dropdown = document.getElementById('linkedDropdown');
+            const items = dropdown.querySelectorAll('.dropdown-item');
+            const createOption = document.getElementById('createOption');
+            const createItemName = document.getElementById('createItemName');
+            const linkBtn = document.getElementById('linkedLinkBtn');
+
+            let hasResults = false;
+            const searchTerm = value.toLowerCase().trim();
+
+            // Filter dropdown items
+            items.forEach(item => {
+                const itemName = item.querySelector('.dropdown-item-name')?.textContent.toLowerCase();
+                if (itemName && itemName.includes(searchTerm)) {
+                    item.style.display = 'block';
+                    hasResults = true;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Show/hide create option
+            if (!hasResults && searchTerm) {
+                createOption.style.display = 'block';
+                createItemName.textContent = value;
+            } else {
+                createOption.style.display = 'none';
+            }
+
+            // Enable/disable Link button
+            if (searchTerm) {
+                linkBtn.classList.add('active');
+            } else {
+                linkBtn.classList.remove('active');
+            }
+
+            // Show dropdown if there's input
+            if (searchTerm || hasResults) {
+                dropdown.classList.add('active');
+            }
+        }
+
+        function selectDropdownItem(itemName, itemDetails) {
+            alert(`Selected: ${itemName}\n${itemDetails}\n\nIn production, this would update the linked item.`);
+            hideLinkedSearch();
+        }
+
+        // Confirm modal functions
+        function showConfirmModal() {
+            const itemName = document.getElementById('linkedSearchInput').value;
+            const accountType = document.querySelector('#qbo-linked select[onchange*="linked"]').selectedOptions[0]?.text || 'Revenue';
+            const accountSubType = document.getElementById('subtype-linked').selectedOptions[0]?.text || 'Service Revenue';
+
+            // Update modal content
+            document.getElementById('confirmItemName').textContent = itemName;
+            document.getElementById('hcpItemName').textContent = itemName;
+            document.getElementById('qbItemName').textContent = itemName;
+            document.getElementById('hcpAccountType').textContent = accountType;
+            document.getElementById('qbAccountType').textContent = accountType;
+            document.getElementById('hcpAccountSubType').textContent = accountSubType;
+            document.getElementById('qbAccountSubType').textContent = accountSubType;
+
+            // Show modal
+            document.getElementById('confirmModal').classList.add('active');
+            document.getElementById('linkedDropdown').classList.remove('active');
+        }
+
+        function closeConfirmModal() {
+            document.getElementById('confirmModal').classList.remove('active');
+        }
+
+        function closeConfirmModalOnOverlay(event) {
+            if (event.target.id === 'confirmModal') {
+                closeConfirmModal();
+            }
+        }
+
+        function confirmCreateLink() {
+            const itemName = document.getElementById('confirmItemName').textContent;
+            alert(`Item created and linked successfully!\n\nCreated: ${itemName} in QuickBooks\n\nIn production, this would create the item in QB and link it.`);
+            closeConfirmModal();
+            hideLinkedSearch();
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const searchBox = document.querySelector('#linked-search-mode .search-box');
+            const dropdown = document.getElementById('linkedDropdown');
+            if (searchBox && !searchBox.contains(event.target)) {
+                dropdown?.classList.remove('active');
+            }
+        });
+
+        // Initialize
+        updateSubTypes('revenue', 'linked');
+        updateSubTypes('revenue', 'search');
+        updateSubTypes('revenue', 'broken');
+
+        // Keyboard support
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeConfirmModal();
+                const dropdown = document.getElementById('linkedDropdown');
+                if (dropdown?.classList.contains('active')) {
+                    dropdown.classList.remove('active');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
