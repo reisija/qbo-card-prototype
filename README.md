@@ -1,6 +1,9 @@
   # QuickBooks Online Card - Enhanced Design Prototype
+  
   Interactive prototype demonstrating the enhanced QuickBooks Online card for HCP's service editing interface.
-  🔗 **[View Live Prototype](#)** ← Will update with URL in next step
+  
+  🔗https://reisija.github.io/qbo-card-prototype/
+  
   ---
   ## ✨ Features
   - ✅ Inline search with live dropdown
